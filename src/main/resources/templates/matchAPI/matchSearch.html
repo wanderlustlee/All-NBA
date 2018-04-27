@@ -117,7 +117,7 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="panel-3842">
+                    <div th:class="${pane1}" id="panel-3842">
                         <table class="table" th:if="${not #lists.isEmpty(matchlist)}">
                             <thead>
                             <tr class="success">
@@ -153,7 +153,7 @@
                         </table>
                     </div>
 
-                    <div class="tab-pane" id="panel-110129">
+                    <div th:class="${pane2}" id="panel-110129">
                         <form class="form-search" action="/teammatch" method="post" id="form2" name="form2">
                             <input name="teamname" class="form-control" type="text" placeholder="请输入要查询的球队名称" />
                             <button type="submit" class="btn btn-info">查询</button>
@@ -194,7 +194,7 @@
                         </table>
                     </div>
 
-                    <div class="tab-pane" id="panel-1101">
+                    <div th:class="${pane3}" id="panel-1101">
                         <form class="form-search" action="/teampk" method="post" id="form3" name="form3">
                             <input name="teamname1" class="form-control" type="text" placeholder="请输入要查询的球队名称" />
                             <input name="teamname2" class="form-control" type="text" placeholder="请输入要查询的球队名称" />

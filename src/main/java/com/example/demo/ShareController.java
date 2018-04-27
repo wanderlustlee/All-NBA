@@ -53,6 +53,9 @@ public class ShareController {
 	public String seeMatch(Model model){
 		List matchlist = APItest.getRequest1();
 		model.addAttribute("matchlist",matchlist);
+		model.addAttribute("pane1","tab-pane active");
+		model.addAttribute("pane2","tab-pane");
+		model.addAttribute("pane3","tab-pane");
 		return "matchAPI/matchSearch";
 	}
 
@@ -60,6 +63,9 @@ public class ShareController {
 	public String seeTeammatch(@RequestParam("teamname") String teamname,Model model){
 		List teammatchList = APItest.getRequest2(teamname);
 		model.addAttribute("teammatchList",teammatchList);
+		model.addAttribute("pane1","tab-pane");
+		model.addAttribute("pane2","tab-pane active");
+		model.addAttribute("pane3","tab-pane");
 		return "matchAPI/matchSearch";
 	}
 
@@ -67,6 +73,10 @@ public class ShareController {
 	public String seeTeampk(@RequestParam("teamname1") String teamname1,@RequestParam("teamname2") String teamname2,Model model){
 		List teampkList = APItest.getRequest3(teamname1,teamname2);
 		model.addAttribute("teampkList",teampkList);
+		model.addAttribute("pane1","tab-pane");
+		model.addAttribute("pane2","tab-pane");
+		model.addAttribute("pane3","tab-pane active");
+
 		return "matchAPI/matchSearch";
 	}
 }
