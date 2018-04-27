@@ -118,7 +118,7 @@
                 </ul>
                 <div class="tab-content">
                     <div th:class="${pane1}" id="panel-3842">
-                        <table class="table" th:if="${not #lists.isEmpty(matchlist)}">
+                        <table class="table" th:if="${not #lists.isEmpty(session.matchlist)}">
                             <thead>
                             <tr class="success">
                                 <th>
@@ -139,7 +139,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <span th:each="match:${matchlist}" >
+                            <span th:each="match:${session.matchlist}" >
                                 <tr th:each="matchtr:${match.tr}" class="warning">
                                     <td th:text="${matchtr.player1} + 'vs' + ${matchtr.player2}"></td>
                                     <td th:text="${matchtr.time}"></td>

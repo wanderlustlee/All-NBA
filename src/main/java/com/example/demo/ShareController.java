@@ -50,9 +50,9 @@ public class ShareController {
 	}
 
 	@RequestMapping(value = "/match",method = RequestMethod.GET)
-	public String seeMatch(Model model){
+	public String seeMatch(Model model,HttpSession session){
 		List matchlist = APItest.getRequest1();
-		model.addAttribute("matchlist",matchlist);
+		session.setAttribute("matchlist",matchlist);
 		model.addAttribute("pane1","tab-pane active");
 		model.addAttribute("pane2","tab-pane");
 		model.addAttribute("pane3","tab-pane");
