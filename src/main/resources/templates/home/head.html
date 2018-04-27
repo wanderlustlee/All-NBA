@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+	<title>head</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="application/x-javascript">
+addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+function hideURLbar()
+{
+	window.scrollTo(0,1); 
+} 
+function setting(){
+	document.getElementById('form1').action="/usersetting";
+	document.getElementById('form1').submit();
+}
+</script>
+	<!-- //for-mobile-apps -->
+	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="../../css/style.css" rel="stylesheet" type="text/css">
+
+	<link th:href="@{css/bootstrap.css}" rel="stylesheet">
+	<link th:href="@{css/style.css}" rel="stylesheet">
+	<!-- js -->
+	<script type="text/javascript" src="../../js/jquery-1.11.1.min.js" ></script>
+
+	<script th:src="@{js/jquery-1.11.1.min.js}" type="text/javascript"></script>
+
+</head>
+	
+<body>
+<!-- header -->
+<form action="" name="form1" id="form1" method="post">
+	<div class="header_top">
+		<div class="container">
+			<div class="header_top_left">
+				<ul>
+					<li>&copy; 全景NBA</li>
+					<p th:text="${session.sessusername}" ></p>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<div class="logo_social_icons">
+		<div class="container">
+			<div class="logo">
+				<h1><a href="#"><img src="images/logo.jpg" alt=" " class="img-responsive" /></a></h1>
+			</div>
+			<div class="social_icons">
+				<div class="component">
+					<a href="#" class="icon icon-cube facebook"></a>
+					<a href="#" class="icon icon-cube rss"></a>
+					<a href="#" class="icon icon-cube instagram"></a>
+					<a href="#" class="icon icon-cube t"></a>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<div class="header">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="stroke">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="/home" target="_top" class="hvr-bounce-to-bottom">首页</a></li>
+							<li><a href="/home2" target="_top" class="hvr-bounce-to-bottom">篮球入门</a></li>
+							<li><a href="/share" target="_top" class="hvr-bounce-to-bottom">分享篮球</a></li>
+							<li><a href="/thoughts" target="_top" class="hvr-bounce-to-bottom">篮球名人堂</a></li>
+							<li><a href="/home4" target="_top" class="hvr-bounce-to-bottom">管理中心</a></li>
+							<li><a href="/shop" target="_top" class="hvr-bounce-to-bottom">购物车</a></li>
+							<li><a href="/setting" target="_top" class="hvr-bounce-to-bottom">个人设置</a></li>
+							
+						</ul>
+						
+						
+					<!-- search-scripts -->
+						<script th:src="@{js/classie.js}" type="text/javascript"></script>
+						<script th:src="@{js/uisearch.js}" type="text/javascript"></script>
+						<script>
+							new UISearch( document.getElementById( 'sb-search' ) );
+						</script>
+					<!-- //search-scripts -->
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+		</div>
+	</div>
+</form>
+<script th:src="@{js/bootstrap.js}" type="text/javascript"></script>
+<script type="text/javascript" src="../../js/bootstrap.js" ></script>
+<!-- //for bootstrap working -->
+
+</body>
+</html>

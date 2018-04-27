@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+	<title>Home</title>
+	<!-- for-mobile-apps -->
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+    function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link th:href="@{css/bootstrap.css}" rel="stylesheet">
+	<link th:href="@{css/style.css}" rel="stylesheet">
+	<link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{css/bootstrap-theme.min.css}" rel="stylesheet">
+	<link th:href="@{css/templatemo_style.css}" rel="stylesheet">
+	<link th:href="@{css/font-awesome.min.css}" rel="stylesheet">
+	<script th:src="@{js/jquery-1.11.1.min.js}" type="text/javascript"></script>
+	<!-- //js -->
+	<script th:src="@{js/bootstrap.js}" type="text/javascript"></script>
+
+	<!-- search-scripts -->
+	<script src="../js/classie.js"></script>
+	<script src="../js/uisearch.js"></script>
+	<script>
+        function setting(){
+            document.getElementById('form1').action="/usersetting";
+            document.getElementById('form1').submit();
+        }
+	</script>
+
+	<link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Cherry+Cream+Soda' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<!-- header -->
+
+<div class="header_top">
+	<div class="container">
+		<div class="header_top_left">
+			<ul>
+				<li>&copy; 全景NBA</li>
+			</ul>
+		</div>
+		<div class="header_top_right" th:if="${session.user}!=null">
+			<span class="text-primary">欢迎您,</span>
+			<span th:text="${session.user.getUsername()}" class="text-primary"></span>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit"  name="logout" value="退出" class="btn btn-danger" >
+			</form>
+		</div>
+
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<div class="logo_social_icons">
+	<div class="container">
+		<div class="logo">
+			<h1><a href="#"><img th:src="@{images/logo.jpg}" alt=" " class="img-responsive" /></a></h1>
+		</div>
+		<div class="social_icons">
+			<div class="component">
+				<a href="#" class="icon icon-cube facebook"></a>
+				<a href="#" class="icon icon-cube rss"></a>
+				<a href="#" class="icon icon-cube instagram"></a>
+				<a href="#" class="icon icon-cube t"></a>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<div class="header">
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+				<nav class="stroke">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/home" target="_top" class="hvr-bounce-to-bottom">首页</a></li>
+						<li><a href="/home2" target="_top" class="hvr-bounce-to-bottom">篮球入门</a></li>
+						<li><a href="/share" target="_top" class="hvr-bounce-to-bottom">分享篮球</a></li>
+						<li><a href="/thoughts" target="_top" class="hvr-bounce-to-bottom">篮球名人堂</a></li>
+						<li><a href="/home4" target="_top" class="hvr-bounce-to-bottom">管理中心</a></li>
+						<li><a href="/shop" target="_top" class="hvr-bounce-to-bottom">购物车</a></li>
+						<li><a href="/setting" target="_top" class="hvr-bounce-to-bottom">个人设置</a></li>
+
+					</ul>
+
+
+					<!-- search-scripts -->
+					<script th:src="@{js/classie.js}" type="text/javascript"></script>
+					<script th:src="@{js/uisearch.js}" type="text/javascript"></script>
+
+				</nav>
+			</div>
+			<!-- /.navbar-collapse -->
+		</nav>
+	</div>
+</div>
+
+<!-- //header -->
+
+
+
+<div>
+	<h3>首页</h3>  <br /> 
+	<hr /><br /> <br />
+    <div>
+		<table align="left"  >
+			<tr>
+			
+			<td class="black" >来自  <a href=""  target="_self"  class="black">  篮球 </a></td>
+				
+			</tr>
+		</table><br /><br /> <br/>
+		<div class="div_one">
+		        
+			<h3>技术术语</h3>
+<p>（1）扣篮：运动员用单手或双手持球，跳起在空中自上而下直接将球扣进篮圈。</p>
+<p>（2）补篮：投篮不中时，运动员跳起在空中将球补进篮内。</p>
+<p>（3）卡位：进攻人运用脚步动作把防守者挡在自己身后，这种步法叫卡位。</p>
+<p>（4）领接球：顺传球飞行方向移动，顺势接球。</p>
+<p>（5）错位防守：防守人站位在自己所防守的进攻人身侧，阻挠他接球叫错位防守。</p>
+<p>（6）要位：进攻人用身体把防守人挡在身后，占据有利的接球位置。</p>
+<p>（7）突破：运球超越防守人。</p>
+<p>（8）空切：进攻人空手向篮跑动。</p>
+<p>（9）一传：获球者由守转攻的第1次传球。 </p>
+　　<p>（10）盖帽：进攻人投篮出手时，防守人设法在空中将球打掉的动作。 </p>
+　　<p>（11）补位：当1个防守人失掉正确防守位置时，另一防守人及时补占其正确防守位置。 </p>
+　　<p>（12）协防：协助同伴防守。 </p>
+　　<p>（13）紧逼防守：贴近进攻人，不断运用攻击性防守动作，威胁对方持球的安全或不让对方接球。 </p>
+　　<p>（14）斜插：从边线向球篮或者向球场中间斜线快跑。 </p>
+　　<p>（15）时间差：在投篮时，为躲避对方防守的封盖，利用空中停留改变投篮出手时间。 [3] </p>
+<p>（16）篮板球：投篮不中后，双方运动员争抢打在篮筐或篮板上篮球的球权。</p>
+<p>（17）罚球：进攻队员被犯规后，在罚球线后的半圆内，无争抢的情况下进行投篮，每进一球得一分</p>
+<h3>技术规则</h3>
+<p>（1）技术犯规：技术犯规是指所有不包括与对方队员接触的队员犯规。队员不得漠视裁判员的劝告或运用不正当的行为。</p>
+<p>（2）两次运球：又称”非法运球“，球员第一次运球结束后不得再次运球，失去了对球的控制以后只可以投篮、传球、除非球被另一球员接触。</p>
+<p>（3）带球撞人：持球队员推动或移动到防守队员躯干上的身体接触，当接触的瞬间防守队员已经提前站位，则进攻队员构成带球撞人。</p>
+<p>（4）阻挡犯规：持球队员与防守持球队员在进攻和防守时，采取了不合理的位置、不正确的身体姿势、不正当的起动方法和非法的动作而造成错误的身体接触而产生的侵人犯规。</p>
+<p>（5）打手犯规：又称”非法用手“，在运球或上篮、投篮时防守人员打手，这样就会被裁判吹其打手犯规。</p>
+<p>（6）走步：又称“带球走违例”，是指当队员在场上持着一个活球，其一脚或双脚超出规则所述的限制向任一方向[5]  非法移动。</p>
+<p>（7）24秒违例：1.当一名队员在场上控制量个活球时，该队必须在30秒钟内完成投篮。计时器是篮球比赛不可缺少的部分允许24秒时间到时篮球尚在投篮动作完毕后的飞行轨迹中，如果篮球最后触碰篮筐，则24秒计时器重置计时，如果投篮未能触碰篮筐，则判24秒超时违例；2.控制球队在24秒钟内未投篮，要发出24秒信号的声响，违反本条规则为违例。</p>
+<p>（8）八秒违例：负责进攻的球队必须要在十秒钟内把球运到对方的半场，如果在十秒之前运不过对方前场的话，那么裁判就会判给对方发球，比赛也因此会重新开始。</p>
+<p>（9）5秒违例：1. 进攻球员必须在5秒钟之内掷出界外球；2. 在被严密防守时，必须在5秒钟之内传、投或运球；3.在罚球时，罚球队员必须在5秒之内将球投出</p>
+<p>（10）双方犯规：双方犯规是2名互为对方的队员大约同时相互发生侵人犯规的情况。如发生双方犯规，应给每一犯规队员登记一次侵人犯规，不判给罚球，并且只给队员登记犯规，不登记全队犯规。</p>
+<h3>经典动作</h3>
+<p>（1）后仰跳投：又称“fade away”。</p>
+<p>（2）空中接力：又称“alley-oop”，简称空接。</p>
+<p>（3）立定投篮：又称“set shoot”。</p>
+<p>（4）急停跳投：急停跳投是进攻队员在行进间运用突然急停摆脱防守队员后投篮的方法。</p>
+<p>（5）梦幻脚步：一个后转身，然后把球好象要传出去，在拉回到身前做一个投篮的假动作，然后重心脚不动 移动另一个脚象前迈，移动到篮筐上篮</p><a href="" target="_self" class="purple">...显示全部</a>
+		</div><br />
+		<div class="div_two">
+			<a href="" target="_self" class="a_one">+ 关注 </a> 
+			<a href="" target="_self" class="a_one">1243条评论</a>
+			<a href="" target="_self" class="a_one">感谢 </a> 
+			<a href="" target="_self" class="a_one">分享</a> 
+			<a href="" target="_self" class="a_one">收藏</a>
+			<a href="" target="_self" class="a_one">举报</a>    
+			<a href="" target="_self" class="a_one">没有帮助</a> 
+		</div><br /> <br />
+	
+		
+
+
+
+</div>
+<br /><br/><br/>
+
+	<div class="footer">
+		<div class="container">
+			<h3>注册成为我们的朋友</h3>
+			<p class="para">全景NBA致力于为NBA球迷提供最全面的、最快捷的、最方便的NBA球场内外咨询。让我们一起成为真正的懂球帝。</p>
+			<div class="footer-contact">
+
+				<input type="text" placeholder="搜搜你想要知道的新闻" required=" ">
+				<input type="submit" value="搜索">
+
+			</div>
+			<div class="footer-grids">
+				<div class="col-md-4 footer-grid">
+					<p>中国，江西省南昌市，南昌大学，软件学院
+						<a href="mailto:info@example.com">731767435@qq.com</a>
+					<p>+86 13155819193</p>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<ul>
+						<li><a href="../help/help.html" target="_top" name="篮球历史" class="text"> 关于篮球</a></li>
+
+					</ul>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<ul>
+						<li><a href="../help/help1.html" target="_top" name="篮球介绍" class="text"> 篮球介绍</a></li>
+
+					</ul>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<ul>
+						<li><a href="../help/help2.html" target="_top" name="篮球规则" class="text"> 篮球规则</a></li>
+
+					</ul>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<ul>
+						<li><a href="../help/help3.html" target="_top" name="篮球基础" class="text"> 篮球基础</a></li>
+
+					</ul>
+				</div>
+
+				<div class="clearfix"> </div>
+			</div>
+			<div class="footer-copy">
+				<p>Copyright &copy; 2018.wanderlustLee</p>
+			</div>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>

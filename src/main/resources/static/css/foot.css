@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+
+    *{
+        margin:0; padding:0;
+    }
+
+    #footer{
+	font-size:14px; text-align:center;
+    }
+
+    a{
+	text-decoration:none; 
+    }
+
+    a:hover{
+	cursor:hand; background:#333; color:#CCC; 
+    }
+
+    .text{
+	font-size:14px; color:#666;  
+    }
+
+    body{
+	background:url(../../templates/home/images/background1.png);
+    }

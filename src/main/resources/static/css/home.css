@@ -1,0 +1,145 @@
+  @charset "utf-8";
+/* CSS Document */
+
+
+  *{
+    	margin:0px auto; padding:0px;
+    }
+
+	#header{
+		font-size:12px; font-color:#F00; background-color:#FFF; float:right;
+		 }
+
+	.ti{
+		font-color:#F00; 
+	}
+
+	body {
+			font-size:12px;
+         background:url(../home/images/background7.png);
+         background-repeat:x; }
+
+	ul {
+			padding: 0px; margin: 0px;}
+
+	li {
+			padding: 0px; margin: 0px;}
+
+	.container {
+		margin: 0px;
+		padding: 0px;
+		width:1349px;
+		height:700px
+	}
+	.container  img {
+		margin: 0px;
+		padding: 0px;
+		width: 1349px;
+		height:750px
+	}
+	.container img {
+		border-bottom-style: none;
+		border-right-style: none;
+		border-top-style: none;
+		border-left-style: none
+	}
+	.td_f img {
+		padding-bottom:0px;
+		margin: 0px;
+		padding-left: 0px;
+		padding-right: 0px;
+		padding-top: 0px
+	}
+	.num {
+		position: absolute;
+		width: 300px;
+		float: right;
+		top: 650px;
+		left: 580px
+	}
+	.num li {
+		text-align: center;
+		line-height: 15px;
+		list-style-type: none;
+		margin: 10px;
+		width: 15px;
+		font-family: Arial;
+		float: left;
+		height: 15px;
+		color: #86a2b8;
+		font-size: 22px;
+		cursor: pointer
+	}
+	.num li.on {
+		line-height: 15px;
+		width: 15px;
+		height: 15px;
+		color: #ffffff
+	}	
+
+	h3 {
+		 margin-left: 280px; 
+		 color: black;  }
+
+	hr {
+		color: #999;
+		 margin:0px 450px  0px 280px;}
+
+	.div_one{
+			margin-left: 365px;
+			 margin-right:460px; 
+			 color: #333;
+			  font-size:14px;}
+
+	.div_two{
+			margin-left: 365px;}
+
+	a {
+	 	text-decoration:none;
+	 	 color:#999; }
+
+       .a_one{
+       	margin:0px 25px 0px 0px}
+
+	a:hover{  
+		text-decoration: underline;
+		color:black; }
+
+	a:hover.blue{
+	 text-decoration: underline;
+	 color:purple;}
+
+	a:hover.purple{ 
+		text-decoration: none; 
+		color:purple;}
+
+	a:hover.picture{
+		text-decoration: none;}
+
+	.blue{
+		color: purple;
+		font-weight: bold;
+		 font-size:15px;}
+
+	.purple{
+		color:purple; 
+		font-size: 12.5px;}
+
+	.black{
+		color: #666; }
+
+	img{ 
+		width: 40px; 
+		height: 40px; 
+		margin-left: 320px;}
+
+	#picture{
+		width: 150px; 
+		height: 90px;
+		 margin-left: 10px;}
+
+
+
+
+
+		 

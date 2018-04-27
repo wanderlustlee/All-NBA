@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+	<title>全景NBA</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link th:href="@{css/bootstrap.css}" rel="stylesheet">
+	<link th:href="@{css/style.css}" rel="stylesheet">
+	<link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{css/bootstrap-theme.min.css}" rel="stylesheet">
+	<link th:href="@{css/templatemo_style.css}" rel="stylesheet">
+	<link th:href="@{css/font-awesome.min.css}" rel="stylesheet">
+	<script th:src="@{js/jquery-1.11.1.min.js}" type="text/javascript"></script>
+	<script th:src="@{js/bootstrap.js}" type="text/javascript"></script>
+	<script th:src="@{js/bootstrap.min.js}" type="text/javascript"></script>
+</head>
+<body >
+<!-- header -->
+<div class="header_top">
+	<div class="container">
+		<div class="header_top_left">
+			<ul>
+				<li>&copy; 全景NBA</li>
+			</ul>
+		</div>
+		<div class="header_top_right">
+			欢迎您,
+			<form th:action="@{/logout}" method="post">
+				<input th:if="${param.logout}" type="submit"  name="logout" value="退出" class="btn btn-danger" >
+			</form>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<div class="logo_social_icons">
+	<div class="container">
+		<div class="logo">
+			<h1><a href="/"><img th:src="@{images/logo.jpg}" alt=" " class="img-responsive" /></a></h1>
+		</div>
+		<div class="social_icons">
+			<div class="component">
+				<a href="#" class="icon icon-cube facebook"></a>
+				<a href="#" class="icon icon-cube rss"></a>
+				<a href="#" class="icon icon-cube instagram"></a>
+				<a href="#" class="icon icon-cube t"></a>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<div class="header">
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+				<nav class="stroke">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/signin" target="_top" class="hvr-bounce-to-bottom">注 册</a></li>
+						<li><a href="/login" target="_top" class="hvr-bounce-to-bottom">登 录</a></li>
+
+
+					</ul>
+					<div class="search-box">
+						<div id="sb-search" class="sb-search">
+							<form>
+								<input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
+								<input class="sb-search-submit" type="submit" value="">
+								<span class="sb-icon-search"> </span>
+							</form>
+						</div>
+					</div>
+					<!-- search-scripts -->
+					<script th:src="@{js/classie.js}" type="text/javascript"></script>
+					<script th:src="@{js/uisearch.js}" type="text/javascript"></script>
+					<script>
+                        new UISearch( document.getElementById( 'sb-search' ) );
+					</script>
+					<!-- //search-scripts -->
+				</nav>
+			</div>
+			<!-- /.navbar-collapse -->
+		</nav>
+	</div>
+</div>
+
+<div id="myCarousel" class="carousel slide">
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"> </li>
+		<li data-target="#myCarousel" data-slide-to="1"> </li>
+		<li data-target="#myCarousel" data-slide-to="2"> </li>
+		<li data-target="#myCarousel" data-slide-to="3"> </li>
+		<li data-target="#myCarousel" data-slide-to="4"> </li>
+
+
+	</ol>
+	<div class="carousel-inner">
+		<div class="item active" style="background:#223240;">
+			<img th:src="@{images/0001.jpg}" alt="第一张" />
+		</div>
+		<div class="item" style="background:#223240;">
+			<img th:src="@{images/0002.jpg}" alt="第二张" />
+		</div>
+		<div class="item" style="background:#223240;">
+			<img th:src="@{images/0003.jpg}" alt="第三张" />
+		</div>
+		<div class="item" style="background:#223240;">
+			<img th:src="@{images/0004.jpg}" alt="第四张" />
+		</div>
+		<div class="item" style="background:#223240;">
+			<img th:src="@{images/0005.jpg}" alt="第五张" />
+		</div>
+
+	</div>
+
+	<a href="#myCarousel" data-slide="prev" class="carousel-control left">
+		<span class="glyphicon glyphicon-chevron-left"> </span>
+	</a>
+	<a href="#myCarousel" data-slide="next" class="carousel-control right">
+		<span class="glyphicon glyphicon-chevron-right"> </span>
+	</a>
+</div>
+
+
+
+<!-- //about-bottom -->
+<!-- footer -->
+<div class="footer">
+	<div class="container">
+		<h3>注册成为我们的朋友</h3>
+		<p class="para">全景NBA致力于为NBA球迷提供最全面的、最快捷的、最方便的NBA球场内外咨询。让我们一起成为真正的懂球帝。</p>
+		<div class="footer-contact">
+			<form>
+				<input type="text" placeholder="搜搜你想要知道的新闻" required=" ">
+				<input type="submit" value="搜索">
+			</form>
+		</div>
+		<div class="footer-grids">
+			<div class="col-md-4 footer-grid">
+				<p>中国，江西省南昌市，南昌大学，软件学院
+					<a href="mailto:info@example.com">731767435@qq.com</a>
+				<p>+86 13155819193</p>
+			</div>
+			<div class="col-md-4 footer-grid">
+				<ul>
+					<li><a href="../help/help.html" target="_top" name="篮球历史" class="text"> 关于篮球</a></li>
+
+				</ul>
+			</div>
+			<div class="col-md-4 footer-grid">
+				<ul>
+					<li><a href="../help/help1.html" target="_top" name="篮球介绍" class="text"> 篮球介绍</a></li>
+
+				</ul>
+			</div>
+			<div class="col-md-4 footer-grid">
+				<ul>
+					<li><a href="../help/help2.html" target="_top" name="篮球规则" class="text"> 篮球规则</a></li>
+
+				</ul>
+			</div>
+			<div class="col-md-4 footer-grid">
+				<ul>
+					<li><a href="../help/help3.html" target="_top" name="篮球基础" class="text"> 篮球基础</a></li>
+
+				</ul>
+			</div>
+
+			<div class="clearfix"> </div>
+		</div>
+		<div class="footer-copy">
+			<p>Copyright &copy; 2018.wanderlustLee</p>
+		</div>
+	</div>
+</div>
+<!-- //footer -->
+
+
+<!-- //for bootstrap working -->
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+*{ 
+        margin:0px; 
+	padding:0px;
+	}
+	
+#text{
+	  text-align:center;
+	 }
+	 
+.div_h{
+	font-family:宋体 #666; 
+	font-weight:bolder;
+	font-size:40px;
+	width:1100px;
+	height:100px;
+	}
+	
+.div_p{
+	font-family:宋体 #666; 
+	font-weight:bolder;
+	font-size:40px;
+	width:1350px;
+	height:100px;
+	}
+	 
+.text_word{ 
+      font-family:宋体 #666; 
+	  font-weight:bolder;
+	  font-size:20px; 
+	  }
+	  	  
+a{
+	 text-decoration:none; 
+	 color:black;
+	 }
+	 
+body{ 
+    background:url(../home/images/background7.png); background-repeat:x;
+	 }
+	 
+.form_set{
+	width:180px;
+	height:30px;
+	}
+	 
+.register_input{
+	width:180px;
+	height:30px;
+	border:solid 1px #999;
+	margin:4px 0px 4px 0px;
+	}
+	
+.register_prompt{
+	width:180px;
+	height:30px;
+	font-size:18px;
+	color:#999;
+	}
+
+.register_prompt_error{
+	width:200px;
+	height:40px;
+	font-size:18px;
+	color:#C8180B;
+	border:solid 1px #999;
+	padding:0px 5px 0px 5px;
+	}
+	
+.register_prompt_ok{
+	background-image:url(../images/register_write_ok.gif);
+	background-repeat:no-repeat;
+	width:180px;
+	height:30px;
+	margin:5px 0px 0px 5px;
+	}

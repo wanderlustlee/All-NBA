@@ -1,0 +1,75 @@
+  @charset "utf-8";
+/* CSS Document */
+
+
+	*{
+    		margin:0px auto; padding:0px;
+  	  }
+
+	body {
+		font-size: 14px;
+		color: #999;
+        	 background:url(../home/images/background7.png); 
+         background-repeat:x; }
+
+         h3{
+	 margin-left: 280px; 
+	 color: black;  }
+
+	hr {
+	color: #999;
+	 margin:0px 450px  0px 280px;}
+
+	  .div_one{
+			margin-left: 365px;
+			 margin-right:460px; 
+			 color: #333;
+			  font-size:14px;}
+
+	.div_two{
+			margin-left: 365px;}
+
+	a {
+		font-size: 14px;
+	 	text-decoration:none;
+	 	 color:#999; }
+
+       .a_one{
+       	margin:0px 25px 0px 0px}
+
+	a:hover{  
+		text-decoration: underline;
+		color:black; }
+
+	a:hover.blue{
+	 text-decoration: underline;
+	 color:purple;}
+
+	a:hover.purple{ 
+		text-decoration: none; 
+		color:purple;}
+
+	a:hover.picture{
+		text-decoration: none;}
+
+	.blue{
+		color: purple;
+		font-weight: bold;
+		 font-size:15px;}
+
+	 .purple{
+		color:purple; 
+		font-size: 12.5px;}
+
+	.black{
+		color: #666; }
+
+	#picture{
+		width: 150px; 
+		height: 90px;
+		 margin-left: 10px;}
+
+	img{ 
+		width: 40px; 
+		height: 40px; 
+		margin-left: 320px;}

@@ -1,0 +1,48 @@
+  @charset "utf-8";
+/* CSS Document */
+
+	*{
+    		margin:0px auto; padding:0px;
+  	  }
+
+	body {
+         background:url(../images/background7.png); 
+         background-repeat:x; }
+
+	h3{
+		 margin-left: 280px; 
+		 color: black;  }
+
+	hr {
+		color: #999;
+		 margin:0px 450px  0px 280px;}
+
+	 a {
+	 	text-decoration:none;
+	 	 color:#666; }
+	  a:hover{  
+		text-decoration: underline;
+		color:black; }
+
+	.purple{
+			color:purple;
+			font-size:18px }
+
+	a:hover.purple{ 
+		text-decoration: underline; 
+		color:purple;}
+
+	 .li_one {margin-left: 320px;
+	 	font-size: 18px;  }
+
+	  .li_two{margin-left: 20px;
+	  	font-size: 16px;}
+
+	  .li_three{margin-left: 320px;
+	  	font-size: 16px;}
+
+	 .li_three_color{color:purple;
+	 	font-size:16px;}
+
+	a:hover.li_three_color{text-decoration:underline;
+						color:purple;}

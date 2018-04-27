@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>购物车页面</title>
+    <!-- for-mobile-apps -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../css/myCart.css" type="text/css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/templatemo_style.css" rel="stylesheet" type="text/css">
+
+    <link href="../../css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../../js/jquery-1.11.1.min.js" ></script>
+<script type="text/javascript" src="../js/myCart.js"></script>
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar()
+        {
+            window.scrollTo(0,1);
+        }
+        function setting(){
+
+            document.getElementById('form1').action="/usersetting";
+            document.getElementById('form1').submit();
+        }
+    </script>
+</head>
+
+<body>
+<div class="header_top">
+    <div class="container">
+        <div class="header_top_left">
+            <ul>
+                <li>&copy; 全景NBA</li>
+            </ul>
+        </div>
+        <div class="header_top_right" th:if="${session.user}!=null">
+            <span class="text-primary">欢迎您,</span>
+            <span th:text="${session.user.getUsername()}" class="text-primary"></span>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit"  name="logout" value="退出" class="btn btn-danger" >
+            </form>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<div class="logo_social_icons">
+    <div class="container">
+        <div class="logo">
+            <h1><a href="#"><img th:src="@{images/logo.jpg}" alt=" " class="img-responsive" /></a></h1>
+        </div>
+        <div class="social_icons">
+            <div class="component">
+                <a href="#" class="icon icon-cube facebook"></a>
+                <a href="#" class="icon icon-cube rss"></a>
+                <a href="#" class="icon icon-cube instagram"></a>
+                <a href="#" class="icon icon-cube t"></a>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<div class="header">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+                <nav class="stroke">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/home" target="_top" class="hvr-bounce-to-bottom">首页</a></li>
+                        <li><a href="/home2" target="_top" class="hvr-bounce-to-bottom">篮球入门</a></li>
+                        <li><a href="/share" target="_top" class="hvr-bounce-to-bottom">分享篮球</a></li>
+                        <li><a href="/match" target="_top" class="hvr-bounce-to-bottom">NBA赛程</a></li>
+                        <li><a href="/thoughts" target="_top" class="hvr-bounce-to-bottom">篮球名人堂</a></li>
+                        <li><a href="/home4" target="_top" class="hvr-bounce-to-bottom">管理中心</a></li>
+                        <li><a href="/shop" target="_top" class="hvr-bounce-to-bottom">购物车</a></li>
+                        <li><a href="/setting" target="_top" class="hvr-bounce-to-bottom">个人设置</a></li>
+
+                    </ul>
+
+
+
+                </nav>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+    </div>
+</div>
+
+<div id="navlist">
+  <ul>
+    <li class="navlist_red_left"></li> 
+    <li class="navlist_red">1. 查看购物车</li> 
+    <li class="navlist_red_arrow"></li>
+    <li class="navlist_gray">2. 确认订单信息</li> 
+    <li class="navlist_gray_arrow"></li> 
+     <li class="navlist_gray">3. 付款到支付宝</li> 
+    <li class="navlist_gray_arrow"></li>   
+     <li class="navlist_gray">4. 确认收货</li> 
+    <li class="navlist_gray_arrow"></li> 
+    <li class="navlist_gray">5. 评价</li> 
+    <li class="navlist_gray_right"></li>   
+  </ul>
+</div>
+
+<div id="content">
+ <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping">
+ <form action="" method="post" name="form1" id="form1">
+  <tr>
+    <td class="title_1"><input id="allCheckBox" type="checkbox" value="" onclick="selectAll()" />全选</td>
+    <td class="title_2" colspan="2">店铺宝贝</td>
+    <td class="title_3">获积分</td>
+    <td class="title_4">单价（元）</td>
+    <td class="title_5">数量</td>
+    <td class="title_6">小计（元）</td>
+    <td class="title_7">操作</td>
+  </tr>
+  <tr>
+    <td colspan="8" class="line"></td>
+  </tr>
+  <tr>
+    <td colspan="8" class="shopInfo">店铺：<a href="#">篮球专家</a>    卖家：<a href="#">专家</a> <img th:src="@{images/taobao_relation.jpg}" alt="relation" /></td>
+  </tr>
+   <tr id="product1">
+    <td class="cart_td_1"><input name="cartCheckBox" type="checkbox" value="product1" onclick="selectSingle()" /></td>
+    <td class="cart_td_2"><img th:src="@{images/taobao_cart_01.jpg}" alt="shopping"/></td>
+    <td class="cart_td_3"><a href="#">篮球</a><br />
+        
+        保障：<img th:src="@{images/taobao_icon_01.jpg}" alt="icon" /></td>
+    <td class="cart_td_4">5</td>
+    <td class="cart_td_5">138.00</td>
+    <td class="cart_td_6"><img th:src="@{images/taobao_minus.jpg}" alt="minus" onclick="changeNum('num_1','minus')" class="hand"/> <input id="num_1" type="text"  value="1" class="num_input" readonly="readonly"/> <img th:src="@{images/taobao_adding.jpg}" alt="add" onclick="changeNum('num_1','add')"  class="hand"/></td>
+    <td class="cart_td_7"></td>
+    <td class="cart_td_8"><a href="javascript:deleteRow('product1');">删除</a></td>
+  </tr>
+  
+  <tr>
+    <td colspan="8" class="shopInfo">店铺：<a href="#">运动商城</a>    卖家：<a href="#">lokemick2009</a> <img th:src="@{images/taobao_relation.jpg}" alt="relation" /></td>
+  </tr>
+   <tr id="product2">
+    <td class="cart_td_1"><input name="cartCheckBox" type="checkbox" value="product2" onclick="selectSingle()" /></td>
+    <td class="cart_td_2"><img th:src="@{images/taobao_cart_02.jpg}" alt="shopping"/></td>
+    <td class="cart_td_3"><a href="#">篮球鞋</a><br />
+        保障：<img th:src="@{images/taobao_icon_01.jpg}" alt="icon" /> <img th:src="@{images/taobao_icon_02.jpg}" alt="icon" /></td>
+    <td class="cart_td_4">12</td>
+    <td class="cart_td_5">1699.00</td>
+    <td class="cart_td_6"><img th:src="@{images/taobao_minus.jpg}" alt="minus" onclick="changeNum('num_2','minus')" class="hand"/> <input id="num_2" type="text"  value="1" class="num_input" readonly="readonly"/> <img th:src="@{images/taobao_adding.jpg}" alt="add" onclick="changeNum('num_2','add')"  class="hand"/></td>
+    <td class="cart_td_7"></td>
+    <td class="cart_td_8"><a href="javascript:deleteRow('product2');">删除</a></td>
+  </tr>
+  
+   <tr>
+    <td colspan="8" class="shopInfo">店铺：<a href="#">实体经营</a>    卖家：<a href="#">林颜店铺</a> <img src="shop/images/taobao_relation.jpg" alt="relation" /></td>
+  </tr>
+   <tr id="product3">
+    <td class="cart_td_1"><input name="cartCheckBox" type="checkbox" value="product3"  onclick="selectSingle()"/></td>
+    <td class="cart_td_2"><img th:src="@{images/taobao_cart_03.jpg}" alt="shopping"/></td>
+    <td class="cart_td_3"><a href="#">篮球上衣</a><br />
+        保障：<img th:src="@{images/taobao_icon_01.jpg}" alt="icon" /> <img th:src="@{images/taobao_icon_02.jpg}" alt="icon" /></td>
+    <td class="cart_td_4">3</td>
+    <td class="cart_td_5">199.00</td>
+    <td class="cart_td_6"><img th:src="@{images/taobao_minus.jpg}" alt="minus" onclick="changeNum('num_3','minus')" class="hand"/> <input id="num_3" type="text"  value="1" class="num_input" readonly="readonly"/> <img th:src="@{images/taobao_adding.jpg}" alt="add" onclick="changeNum('num_3','add')"  class="hand"/></td>
+    <td class="cart_td_7"></td>
+    <td class="cart_td_8"><a href="javascript:deleteRow('product3');">删除</a></td>
+  </tr>
+  
+   <tr>
+    <td colspan="8" class="shopInfo">店铺：<a href="#">红豆豆的小屋</a>    卖家：<a href="#">taobao豆豆</a> <img th:src="@{images/taobao_relation.jpg}" alt="relation" /></td>
+  </tr>
+   <tr id="product4">
+    <td class="cart_td_1"><input name="cartCheckBox" type="checkbox" value="product4" onclick="selectSingle()" /></td>
+    <td class="cart_td_2"><img th:src="@{images/taobao_cart_04.jpg}" alt="shopping"/></td>
+    <td class="cart_td_3"><a href="#">篮球裤</a><br />
+        保障：<img th:src="@{images/taobao_icon_01.jpg}" alt="icon" /></td>
+    <td class="cart_td_4">12</td>
+    <td class="cart_td_5">199.00</td>
+    <td class="cart_td_6"><img th:src="@{images/taobao_minus.jpg}" alt="minus" onclick="changeNum('num_4','minus')" class="hand"/> <input id="num_4" type="text"  value="2" class="num_input" readonly="readonly"/> <img th:src="@{images/taobao_adding.jpg}" alt="add" onclick="changeNum('num_4','add')"  class="hand"/></td>
+    <td class="cart_td_7"></td>
+    <td class="cart_td_8"><a href="javascript:deleteRow('product4');">删除</a></td>
+  </tr>
+  
+   <tr>
+   <td  colspan="3"><a href="javascript:deleteSelectRow()"><img th:src="@{images/taobao_del.jpg}" alt="delete"/></a></td>
+    <td colspan="5" class="shopend">商品总价（不含运费）：<label id="total" class="yellow"></label> 元<br />
+    可获积分 <label class="yellow" id="integral"></label> 点<br />
+    <input name=" " type="image" th:src="@{images/taobao_subtn.jpg}" /></td>
+  </tr>
+  </form>
+</table>
+</div>
+<div class="footer">
+    <div class="container">
+        <h3>注册成为我们的朋友</h3>
+        <p class="para">全景NBA致力于为NBA球迷提供最全面的、最快捷的、最方便的NBA球场内外咨询。让我们一起成为真正的懂球帝。</p>
+        <div class="footer-contact">
+
+            <input type="text" placeholder="搜搜你想要知道的新闻" required=" ">
+            <input type="submit" value="搜索">
+
+        </div>
+        <div class="footer-grids">
+            <div class="col-md-4 footer-grid">
+                <p>中国，江西省南昌市，南昌大学，软件学院
+                    <a href="mailto:info@example.com">731767435@qq.com</a>
+                <p>+86 13155819193</p>
+            </div>
+            <div class="col-md-4 footer-grid">
+                <ul>
+                    <li><a href="../help/help.html" target="_top" name="篮球历史" class="text"> 关于篮球</a></li>
+
+                </ul>
+            </div>
+            <div class="col-md-4 footer-grid">
+                <ul>
+                    <li><a href="../help/help1.html" target="_top" name="篮球介绍" class="text"> 篮球介绍</a></li>
+
+                </ul>
+            </div>
+            <div class="col-md-4 footer-grid">
+                <ul>
+                    <li><a href="../help/help2.html" target="_top" name="篮球规则" class="text"> 篮球规则</a></li>
+
+                </ul>
+            </div>
+            <div class="col-md-4 footer-grid">
+                <ul>
+                    <li><a href="../help/help3.html" target="_top" name="篮球基础" class="text"> 篮球基础</a></li>
+
+                </ul>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+        <div class="footer-copy">
+            <p>Copyright &copy; 2018.wanderlustLee</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

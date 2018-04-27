@@ -1,0 +1,11 @@
+#top{height:60px;
+       border-bottom:1px dashed #666;}
+#left,#mid{width:100px;
+        height:120px;
+		float:left;
+		border-right:1px dashed #666;
+		border-bottom:1px dashed #666;}
+#right{width:140px;
+         height:120px;
+		 float:left;
+		 border-bottom:1px dashed #666;}

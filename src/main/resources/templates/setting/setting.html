@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+	<title>设置</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+	<link href="../css/templatemo_style.css" rel="stylesheet" type="text/css">
+
+	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="../../css/style.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="../../js/jquery-1.11.1.min.js" ></script>
+
+
+<script type="text/javascript" src="../js/AJAX.js"></script>
+	<script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar()
+        {
+            window.scrollTo(0,1);
+        }
+        function setting(){
+
+            document.getElementById('form1').action="/usersetting";
+            document.getElementById('form1').submit();
+        }
+	</script>
+<script language="javascript">
+	
+	function checkUsername(username){
+		if(username.value==""){
+			alert("请输入用户名！");
+			username.focus();
+			return;
+		}else{
+			
+			createRequest("../login-sign in/checkUser2.jsp?username="+encodeURI(username.value));			
+		}	
+	}
+</script>
+	<!-- search-scripts -->
+	<script th:src="@{js/classie.js}" type="text/javascript"></script>
+	<script th:src="@{js/uisearch.js}" type="text/javascript"></script>
+
+	<!-- //search-scripts -->
+	<script th:src="@{js/bootstrap.js}" type="text/javascript"></script>
+	<script type="text/javascript" src="../../js/bootstrap.js" ></script>
+	<script type="text/javascript" src="../../js/signing.js" ></script>
+</head>
+<body>
+
+	<div class="header_top">
+		<div class="container">
+			<div class="header_top_left">
+				<ul>
+					<li>&copy; 全景NBA</li>
+				</ul>
+			</div>
+			<div class="header_top_right" th:if="${session.user}!=null">
+				<span class="text-primary">欢迎您,</span>
+				<span th:text="${session.user.getUsername()}" class="text-primary"></span>
+				<form th:action="@{/logout}" method="post">
+					<input type="submit"  name="logout" value="退出" class="btn btn-danger" >
+				</form>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<div class="logo_social_icons">
+		<div class="container">
+			<div class="logo">
+				<h1><a href="#"><img th:src="@{images/logo.jpg}" alt=" " class="img-responsive" /></a></h1>
+			</div>
+			<div class="social_icons">
+				<div class="component">
+					<a href="#" class="icon icon-cube facebook"></a>
+					<a href="#" class="icon icon-cube rss"></a>
+					<a href="#" class="icon icon-cube instagram"></a>
+					<a href="#" class="icon icon-cube t"></a>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<div class="header">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="stroke">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="/home" target="_top" class="hvr-bounce-to-bottom">首页</a></li>
+							<li><a href="/home2" target="_top" class="hvr-bounce-to-bottom">篮球入门</a></li>
+							<li><a href="/share" target="_top" class="hvr-bounce-to-bottom">分享篮球</a></li>
+							<li><a href="/match" target="_top" class="hvr-bounce-to-bottom">NBA赛程</a></li>
+							<li><a href="/thoughts" target="_top" class="hvr-bounce-to-bottom">篮球名人堂</a></li>
+							<li><a href="/home4" target="_top" class="hvr-bounce-to-bottom">管理中心</a></li>
+							<li><a href="/shop" target="_top" class="hvr-bounce-to-bottom">购物车</a></li>
+							<li><a href="/setting" target="_top" class="hvr-bounce-to-bottom">个人设置</a></li>
+
+						</ul>
+
+
+
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+		</div>
+	</div>
+
+
+
+ <br /><br /><br /><br /><br />
+
+	<div class="center-block" style="width:200px" th:if="${setStatus}!=null">
+		<p th:text="${setStatus}" class="bg-danger"></p>
+	</div>
+	<h1 class="margin-bottom-15">个人设置</h1>
+	<div class="container" th:if="${session.user}!=null">
+		<div class="col-md-12">			
+			<form class="form-horizontal templatemo-create-account templatemo-container" role="form" action="" method="post" name="form1" id="form1">
+				<div class="form-inner">
+					<div class="form-group">
+			          <div class="col-md-12">
+			            <label for="username" class="control-label">用户名</label>
+			            <input type="text" name="nickName" id="nickName" th:value="${session.user.getUsername()}" class="form-control" onfocus="nickNameFocus()" onblur="nickNameBlur()" disabled="true">
+			          	<input type="button" name="checkName" value="验证用户名是否可用" onclick="checkUsername(form1.nickName)">
+			          	<div id="nickName_prompt" style="width:260px;color:red;"> </div>
+			          	<div id="toolTip1" style="width:260px;color:red;"></div>
+			          </div>  
+			          </div> 
+			          <div class="form-group">
+			          <div class="col-md-12">		          	
+			            <label for="username" class="control-label">邮箱</label>
+			            <input type="email" class="form-control" name="email" id="email" th:value="${session.user.getEmail()}"  onblur="emailBlur()" >
+			          	<div id="email_prompt" style="width:260px;color:red;"></div>
+			          </div>             
+			        </div>
+			        <div class="form-group">
+			          <div class="col-md-12">		          	
+			            <label for="password" class="control-label">密码</label>
+			            <input type="email" class="form-control" name="password" id="password" th:value="${session.user.getPwd()}" onblur="pwdBlur()" >
+			          	<div id="password_prompt" style="width:260px;color:red;"></div>
+			          </div>              
+			        </div>			
+			        
+			        <div class="form-group">
+			          <div class="col-md-12">
+			            <label for="password" class="control-label">密保问题</label>
+			            <input type="email" class="form-control" name="question" id="question" th:value="${session.user.getQuestion()}"  onblur="questionBlur()">
+			          	<div id="question_prompt" style="width:260px;color:red;"></div>
+			          </div>
+			          </div>
+			          <div class="form-group">
+			          <div class="col-md-12">
+			            <label for="password" class="control-label">密保答案</label>
+			            <input type="email" class="form-control" name="answer" id="answer" th:value="${session.user.getAnswer()}" onblur="answerBlur()" >
+			          	<div id="answer_prompt" style="width:260px;color:red;"></div>
+			          </div>
+			        </div>
+			        <div class="form-group">
+			          <div class="col-md-12">
+			            <input type="button" value="保存修改" class="btn btn-info" onclick="setting()">
+			            
+			          </div>
+			        </div>	
+				</div>				    	
+		      </form>		      
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="templatemo_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Terms of Service</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<p>This form is provided by <a rel="nofollow" href="http://www.cssmoban.com/page/1">Free HTML5 Templates</a> that can be used for your websites. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+	        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+	        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script><br /><br /><br /><br /><br /><br /><br />
+
+	<div class="footer">
+		<div class="container">
+			<h3>注册成为我们的朋友</h3>
+			<p class="para">全景NBA致力于为NBA球迷提供最全面的、最快捷的、最方便的NBA球场内外咨询。让我们一起成为真正的懂球帝。</p>
+			<div class="footer-contact">
+
+					<input type="text" placeholder="搜搜你想要知道的新闻" required=" ">
+					<input type="submit" value="搜索">
+
+			</div>
+			<div class="footer-grids">
+				<div class="col-md-4 footer-grid">
+					<p>中国，江西省南昌市，南昌大学，软件学院
+						<a href="mailto:info@example.com">731767435@qq.com</a>
+					<p>+86 13155819193</p>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<ul>
+						<li><a href="../help/help.html" target="_top" name="篮球历史" class="text"> 关于篮球</a></li>
+
+					</ul>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<ul>
+						<li><a href="../help/help1.html" target="_top" name="篮球介绍" class="text"> 篮球介绍</a></li>
+
+					</ul>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<ul>
+						<li><a href="../help/help2.html" target="_top" name="篮球规则" class="text"> 篮球规则</a></li>
+
+					</ul>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<ul>
+						<li><a href="../help/help3.html" target="_top" name="篮球基础" class="text"> 篮球基础</a></li>
+
+					</ul>
+				</div>
+
+				<div class="clearfix"> </div>
+			</div>
+			<div class="footer-copy">
+				<p>Copyright &copy; 2018.wanderlustLee</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

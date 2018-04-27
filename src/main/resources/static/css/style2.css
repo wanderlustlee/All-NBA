@@ -1,0 +1,11 @@
+body{background:#333;
+     color:#69c;
+	 font-weight:bold;}
+#top{height:60px;
+       border-bottom:1px dashed #666;}
+#left,#mid{width:100%;
+        height:50px;
+		border-bottom:1px dashed #666;}
+#right{width:100%;
+         height:50px;
+		 border-bottom:1px dashed #666;}

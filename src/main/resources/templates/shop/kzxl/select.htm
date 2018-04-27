@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>注册页面</title>
+<script type="text/javascript">
+   function test(x){
+     var v=new Array();
+     for(var i=0; i<document.form1.elements.length;i++){
+       v[i]=document.form1.elements[i].value;
+	 }
+	 switch(x){
+       case 1:
+	   if(v[0].length>6){
+	     document.getElementById("Submit").innerText="用户名长度不能大于4个字符";
+		 document.form1.elements[0].value="";
+	   }
+	   break;
+	   case 2:
+	   if(v[1].length>6){
+	     document.getElementById("Submit").innerText="密码长度不能大于4个字符";
+		 document.form1.elements[1].value="";
+	   }
+	   break;	 
+	 }
+   }
+   function Key(x){
+          x.value=x.value.replace(/[^0-9.]/g,'');
+   }	   	 
+   function Submit(x){     
+     var v=new Array();
+     for(var i=0; i<x.elements.length;i++){
+       v[i]=x.elements[i].value;
+	 }	
+	 for(i=0; i<5;i++){
+	   if(v[i]==""){
+	     document.getElementById("Submit").innerText="请将资料填写完整";
+		 return false;
+		 }
+	 }	 
+  }
+</script>
+<style type="text/css">
+*{margin:0px;
+  padding:0px;}
+body,textarea{font-size:12px;}
+#all{width:400px;
+     height:300px;
+	 margin:0px auto;
+	 line-height:1.8em;	 
+     background-color:#eee;
+	 border:1px solid #40984c;}
+#top{background:#e9F6e5;
+     border-bottom:1px solid #40984c;
+	 text-align:center;
+     color:#40984c;
+	 font-size:14px;
+	 font-weight:bold;}
+.left{text-align:right;
+      width:25%;}
+.tb{width:100%;}
+fieldset{border:1px solid #a3bfa8;
+         width:90%;
+		 margin-left:20px;}
+.txt,textarea{border:1px solid #a3bfa8;
+     background:#e9F6e5;}
+.green{background:#e9F6e5;}
+#bottom{text-align:center;}
+.btn{width:80px;
+     margin:5px;
+	 border:1px solid #40984c;}
+#Submit{text-align:center;
+        color:#d00;}
+</style>
+</head>
+<body>
+<div id="all">
+  <div id="top">注册表单界面</div>
+  <form method="post" action="post.asp" onsubmit="return(Submit(this));" name="form1">
+  注册基本信息
+		  <table border="0" cellspacing="5" cellpadding="5" class="tb">
+  <tr>
+    <td class="left">用户名</td>
+    <td><input type="text" class="txt" size="15" name="userName" onchange="test(1);" /></td>
+  </tr>
+  <tr>
+    <td class="left">密&nbsp;&nbsp;码</td>
+    <td><input type="password" class="txt" size="15" name="pwd" onchange="test(2);" /></td>
+  </tr>
+</table>
+  个人详细资料
+		  <table border="0" cellspacing="5" cellpadding="5"  class="tb">
+  <tr>
+    <td class="left">出生日期</td>
+    <td>19<input type="text" size="2" maxlength="2" class="txt" name="year"  onchange="test(3);" onkeyup="Key(this);" />年<input type="text" size="2" maxlength="2" class="txt" name="month" onchange="test(4);" onkeyup="Key(this);" />月<input type="text" size="2" maxlength="2" class="txt" name="day" onchange="test(5);" onkeyup="Key(this);" />日</td>
+  </tr>
+  <tr>
+    <td class="left">性别</td>
+    <td><label><input type="radio" checked="checked" name="sex" value="1" />男</label><label><input type="radio" name="sex" value="2" />女</label></td>
+  </tr>
+  <tr>
+    <td class="left">最高学历</td>
+    <td>
+	  <select>
+	    <option value="研究生" selected="selected" class="green">研究生</option>
+		<option value="大学">大学</option>
+		<option value="高中/职高" class="green">高中/职高</option>
+		<option value="初中及以下">初中及以下</option>
+	  </select>
+	</td>
+  </tr>
+  <tr>
+    <td class="left">业余爱好</td>
+    <td><label><input checked="checked" type="checkbox" name="fav" value="1" />听音乐</label>
+	    <label><input type="checkbox" name="fav" value="2" />玩游戏</label>
+		<label><input type="checkbox" name="fav" value="3" />上网</label>
+		<label><input type="checkbox" name="fav" value="4" />体育运动</label><br/>
+		<label><input type="checkbox" name="fav" value="5" />全部选择</label>
+	  </select>
+	</td>
+  </tr>
+</table>
+		<div id="bottom"><input type="submit" value="注册" class="btn" /><input type="reset" value="重设" class="btn" /></div>
+		<div id="Submit"></div>
+</form>	  
+</div>
+</body>
+</html>

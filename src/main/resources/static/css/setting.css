@@ -1,0 +1,56 @@
+  @charset "utf-8";
+/* CSS Document */
+
+
+  	*{
+    		margin:0px auto; padding:0px;
+  	  }
+
+	body {
+		color: #333;
+        	 background:url(../home/images/background7.png); 
+         background-repeat:x; }
+
+
+         h3{
+	 margin-left: 280px; 
+	 color: black;  }
+
+	hr {
+	color: #999;
+	 margin:0px 450px  0px 280px;}
+
+	 a {
+	 text-decoration:none;
+	  color:purple; }
+
+	a:hover{  
+	text-decoration: underline;
+	color:purple; }
+
+	.div_one{
+		margin-left: 300px;}
+
+	.div_two{
+		margin-left: 280px; 
+		color: purple;}
+
+	.tr_one{
+		width: 300px; 
+		height: 200px}
+
+	.td_left{
+		border-left: 0px;}
+
+	.td_right{
+		border-right: 0px;}
+
+	.td_top{
+		border-top: 0px;}
+
+	.td_bottom{
+		border-bottom: 0px;}
+
+	.td_color{
+		color: black; }
+		

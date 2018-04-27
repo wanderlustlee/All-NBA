@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	  layout:decorator="layout">
+<head>
+	<title>用户登录</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link th:href="@{css/bootstrap.css}" rel="stylesheet">
+	<link th:href="@{css/style.css}" rel="stylesheet">
+	<link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{css/bootstrap-theme.min.css}" rel="stylesheet">
+	<link th:href="@{css/templatemo_style.css}" rel="stylesheet">
+	<link th:href="@{css/font-awesome.min.css}" rel="stylesheet">
+	<script th:src="@{js/login.js}" type="text/javascript"></script>
+	<script th:src="@{js/jquery-1.11.1.min.js}" type="text/javascript"></script>
+</head>
+<body >
+<!-- header -->
+<div class="header_top">
+	<div class="container">
+		<div class="header_top_left">
+			<ul>
+				<li>&copy; 全景NBA</li>
+			</ul>
+		</div>
+		<div class="header_top_right">
+			欢迎您,
+			<form th:action="@{/logout}" method="post">
+				<input th:if="${param.logout}" type="submit"  name="logout" value="退出" class="btn btn-danger" >
+			</form>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<div class="logo_social_icons">
+	<div class="container">
+		<div class="logo">
+			<h1><a href="index.html"><img th:src="@{images/logo.jpg}" alt=" " class="img-responsive" /></a></h1>
+		</div>
+		<div class="social_icons">
+			<div class="component">
+				<a href="#" class="icon icon-cube facebook"></a>
+				<a href="#" class="icon icon-cube rss"></a>
+				<a href="#" class="icon icon-cube instagram"></a>
+				<a href="#" class="icon icon-cube t"></a>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<div class="header">
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+				<nav class="stroke">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/signin" target="_top" class="hvr-bounce-to-bottom">注 册</a></li>
+						<li><a href="/login" target="_top" class="hvr-bounce-to-bottom">登 录</a></li>
+
+
+					</ul>
+					<div class="search-box">
+						<div id="sb-search" class="sb-search">
+							<form>
+								<input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
+								<input class="sb-search-submit" type="submit" value="">
+								<span class="sb-icon-search"> </span>
+							</form>
+						</div>
+					</div>
+					<!-- search-scripts -->
+					<script th:src="@{js/classie.js}" type="text/javascript"></script>
+					<script th:src="@{js/uisearch.js}" type="text/javascript"></script>
+					<script>
+                        new UISearch( document.getElementById( 'sb-search' ) );
+					</script>
+					<!-- //search-scripts -->
+				</nav>
+			</div>
+			<!-- /.navbar-collapse -->
+		</nav>
+	</div>
+</div>
+<script th:src="@{js/bootstrap.js}" type="text/javascript"></script>
+<!-- //for bootstrap working -->
+
+<div class="center-block" style="width:200px" th:if="${status}!=null">
+	<p th:text="${status}" class="bg-danger"></p>
+</div>
+
+<div class="center-block" style="width:200px" >
+	<!-- <p th:if="${param.error}"  class="bg-danger"></p> -->
+	<p th:if="${param.logout}"  class="bg-danger">您已成功退出</p>
+</div>
+<div class="templatemo-bg-gray">
+<div class="container">
+		<div class="col-md-12">
+			<h1 class="margin-bottom-15">登录</h1>
+			<form class="form-horizontal templatemo-container templatemo-login-form-1 margin-bottom-30" role="form" action="/login" method="post" name="form1" id="form1">
+		        <div class="form-group">
+		          <div class="col-xs-12">		            
+		            <div class="control-wrapper">
+		            	<label  class="control-label fa-label"><i class="fa fa-user fa-medium"></i></label>
+		            	<input type="text" name="username" id="email" class="form-control" onfocus="emailFocus()" onblur="emailBlur()" placeholder="请输入用户名" >
+		            	<div id="email_prompt" style="width:260px;color:red;"> </div>
+		            </div>		            	            
+		          </div>              
+		        </div>
+		        <div class="form-group">
+		          <div class="col-md-12">
+		          	<div class="control-wrapper">
+		            	<label for="password" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
+		            	<input type="password" name="password" class="form-control" id="password" onfocus="pwdFocus()" onblur="pwdBlur()" placeholder="请输入密码">
+						<div id="password_prompt" style="width:260px;color:red;"></div>
+		            </div>
+		          </div>
+		        </div>
+		        <div class="form-group">
+		          <div class="col-md-12">
+	             	<div class="checkbox control-wrapper">
+	                	<label>
+	                  		<input name="remember-me" id="remember-me" type="checkbox"> 记住密码
+                		</label>
+	              	</div>
+		          </div>
+		        </div>
+		        <div class="form-group">
+		          <div class="col-md-12">
+		          	<div class="control-wrapper">
+		          		<input type="submit"  name="submit" value="登录" class="btn btn-info" >
+		          		<a href="forgot-password.html" class="text-right pull-right">忘记密码?</a>
+		          	</div>
+		          </div>
+		        </div>
+		        <hr>
+		        <div class="form-group">
+		        	<div class="col-md-12">
+		        		<label>第三方登录: </label>
+		        		<div class="inline-block">
+		        			<a href="#"><i class="fa fa-facebook-square login-with"></i></a>
+			        		<a href="#"><i class="fa fa-twitter-square login-with"></i></a>
+			        		<a href="#"><i class="fa fa-google-plus-square login-with"></i></a>
+			        		<a href="#"><i class="fa fa-tumblr-square login-with"></i></a>
+			        		<a href="#"><i class="fa fa-github-square login-with"></i></a>
+		        		</div>		        		
+		        	</div>
+		        </div>
+		      </form>
+		      <div class="text-center">
+		      	<a href="/signin" class="templatemo-create-new">注册 <i class="fa fa-arrow-circle-o-right"></i></a>
+		      </div>
+		</div>
+	</div>
+</div>
+<!-- //about-bottom -->
+<!-- footer -->
+<div class="footer">
+	<div class="container">
+		<h3>注册成为我们的朋友</h3>
+		<p class="para">全景NBA致力于为NBA球迷提供最全面的、最快捷的、最方便的NBA球场内外咨询。让我们一起成为真正的懂球帝。</p>
+		<div class="footer-contact">
+			<form>
+				<input type="text" placeholder="搜搜你想要知道的新闻" required=" ">
+				<input type="submit" value="搜索">
+			</form>
+		</div>
+		<div class="footer-grids">
+			<div class="col-md-4 footer-grid">
+				<p>中国，江西省南昌市，南昌大学，软件学院
+					<a href="mailto:info@example.com">731767435@qq.com</a>
+				<p>+86 13155819193</p>
+			</div>
+			<div class="col-md-4 footer-grid">
+				<ul>
+					<li><a href="../help/help.html" target="_top" name="篮球历史" class="text"> 关于篮球</a></li>
+
+				</ul>
+			</div>
+			<div class="col-md-4 footer-grid">
+				<ul>
+					<li><a href="../help/help1.html" target="_top" name="篮球介绍" class="text"> 篮球介绍</a></li>
+
+				</ul>
+			</div>
+			<div class="col-md-4 footer-grid">
+				<ul>
+					<li><a href="../help/help2.html" target="_top" name="篮球规则" class="text"> 篮球规则</a></li>
+
+				</ul>
+			</div>
+			<div class="col-md-4 footer-grid">
+				<ul>
+					<li><a href="../help/help3.html" target="_top" name="篮球基础" class="text"> 篮球基础</a></li>
+
+				</ul>
+			</div>
+
+			<div class="clearfix"> </div>
+		</div>
+		<div class="footer-copy">
+			<p>Copyright &copy; 2018.wanderlustLee</p>
+		</div>
+	</div>
+</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+<script type="text/javascript" src="../../js/bootstrap.js" ></script>
+<script th:src="@{js/bootstrap.js}" type="text/javascript"></script>
+<!-- //for bootstrap working -->
+
+</body>
+</html>
