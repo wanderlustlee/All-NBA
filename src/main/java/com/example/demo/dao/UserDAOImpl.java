@@ -3,10 +3,15 @@ package com.example.demo.dao;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.example.demo.entity.Comment;
+import com.example.demo.entity.Notice;
+import com.example.demo.map.CommentMapper;
+import com.example.demo.map.NoticeMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -32,12 +37,15 @@ public class UserDAOImpl implements UserDAO{
 	InputStream is = null;
 	SqlSessionFactory sqlSessionFactory = null;
 	SqlSession sqlSession = null;
+	int count = 0;
 
 	public UserDAOImpl() throws IOException {
 		resource = "sqlMapConfig.xml";
 		is = Resources.getResourceAsStream(resource);
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 		sqlSession = sqlSessionFactory.openSession();
+		count++;
+		System.out.println(count);
 	}
 	//检查注册时用户名是否可用
 	public boolean checkUsername(String username) {
@@ -78,6 +86,7 @@ public class UserDAOImpl implements UserDAO{
 		user.setQuestion(question);
 		user.setAnswer(answer);
 		user.setImage(photo);
+		user.setRole("ROLE_USER");
 		UserMapper userMapper=sqlSession.getMapper(UserMapper.class);
 		try {
 			int flag = userMapper.insertUser(user);
@@ -133,6 +142,7 @@ public class UserDAOImpl implements UserDAO{
 		System.out.println("Select User! "+username);
 		UserMapper userMapper=sqlSession.getMapper(UserMapper.class);
 		user = userMapper.selectUser(username);
+		System.out.println(user.getUsername());
 		sqlSession.commit();
 		return user;
 	}
@@ -145,4 +155,50 @@ public class UserDAOImpl implements UserDAO{
 		sqlSession.commit();
 		return list;
     }
+
+	public List<Comment> seeComment(int commentDiaryID) {
+		List<Comment> list = new LinkedList<>();
+		CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
+		list = commentMapper.selectComment(commentDiaryID);
+		sqlSession.commit();
+		return list;
+	}
+
+	public int insertComment(Comment comment) {
+		CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
+		int total = 0;
+		try {
+			total = commentMapper.insertComment(comment);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		sqlSession.commit();
+		return total;
+	}
+
+	//发布公告
+	@Override
+	public void releaseNotice(String notice) {
+		String time = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().getTime());
+		Notice noticeObj = new Notice();
+		noticeObj.setNotice(notice);
+		noticeObj.setReleaseTime(time);
+		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+		try {
+			noticeMapper.insertNotice(noticeObj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		sqlSession.commit();
+	}
+
+	//查询公告
+	@Override
+	public List<Notice> seeNotice() {
+		List<Notice> Noticelist = new ArrayList<>();
+		NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+		Noticelist = noticeMapper.selectNotice();
+		sqlSession.commit();
+		return Noticelist;
+	}
 }

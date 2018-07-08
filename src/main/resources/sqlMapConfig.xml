@@ -22,5 +22,7 @@
         <!-- 路径用 斜线（/） 分割，而不是用 点(.) -->
         <mapper resource="UserMapper.xml"></mapper>
         <mapper resource="DiaryMapper.xml"></mapper>
+        <mapper resource="CommentMapper.xml"></mapper>
+        <mapper resource="NoticeMapper.xml"></mapper>
     </mappers>
 </configuration>

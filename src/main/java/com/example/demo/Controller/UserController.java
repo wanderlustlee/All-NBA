@@ -1,8 +1,11 @@
-package com.example.demo;
+package com.example.demo.Controller;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.example.demo.Util.MailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,19 +18,23 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.entity.User;	
 import com.example.demo.service.UserServiceImpl;
 
-import java.util.Map;
+import java.util.Random;
 
 @EnableCaching
 @ComponentScan
 @Controller
-@SessionAttributes("sessusername")
+//@SessionAttributes("sessusername")
 public class UserController {
 	@Autowired
 	UserServiceImpl userService;
+
+	public static final ThreadLocal<HttpSession> threadLocal = new ThreadLocal<HttpSession>();
+
 	@RequestMapping(value = "/userlogin",method=RequestMethod.POST)
 	public ModelAndView userLogin(@RequestParam("userName")String username, @RequestParam("userPwd")String userpwd,Model model,HttpServletRequest request){
 		HttpSession session = request.getSession();
-		model.addAttribute("sessusername",username);
+		threadLocal.set(session);
+		threadLocal.get().setAttribute("sessusername",username);
 		boolean flag = userService.checkPass(username,userpwd);
 		String status = null;
 		if (flag) {
@@ -35,7 +42,7 @@ public class UserController {
 			ModelAndView modelAndView = new ModelAndView("home/home");
 			modelAndView.addObject("status", status);
 			User user = userService.selectUser(username);
-			session.setAttribute("user",user);
+			threadLocal.get().setAttribute("user",user);
 			return modelAndView;
 //			return "home/home.html";
 		}else {
@@ -48,20 +55,36 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/userregister",method=RequestMethod.POST)
-	public String userRegister(HttpServletRequest request){
+	public String userRegister(HttpServletRequest request,Model model){
 		String username = request.getParameter("nickName");
 		String userpwd = request.getParameter("password");
 		String email = request.getParameter("email");
+		String email_code = request.getParameter("emailcode");
 		String question = request.getParameter("question");
 		String answer = request.getParameter("answer");
 		String photo = request.getParameter("photo");
+		if (threadLocal.get() == null){
+			HttpSession session = request.getSession();
+			threadLocal.set(session);
+		}
+		String mailcode = (String) threadLocal.get().getAttribute("mailcode");
+		if (mailcode != null){
+			if (!mailcode.equals(email_code)){
+				model.addAttribute("signStatus","邮箱验证码错误");
+				return "login-signin/signin.html";
+			}
+		}
 		userService.register(username, userpwd, email, question, answer, photo);
 		return "login-signin/login";
 	}
 
 	@RequestMapping(value = "/usersetting",method=RequestMethod.POST)
-	public String userSetting(Model model, HttpSession session,HttpServletRequest request){
-		String username = (String) session.getAttribute("sessusername");
+	public String userSetting(Model model,HttpServletRequest request){
+		if (threadLocal.get() == null){
+			HttpSession session = request.getSession();
+			threadLocal.set(session);
+		}
+		String username = (String) threadLocal.get().getAttribute("sessusername");
 		System.out.println("设置 "+username);
 		String userpwd = request.getParameter("password");
 		String email = request.getParameter("email");
@@ -80,6 +103,32 @@ public class UserController {
 //        ModelAndView modelAndView = new ModelAndView("/setting/setting.html",model.asMap());
 //        return modelAndView;
 	}
+
+
+	@RequestMapping("/sendEmail")
+	@ResponseBody
+	public void sendEmail(HttpServletRequest request){
+		String mail = request.getParameter("email");
+		String code = "";
+		for(int i = 0;i<4;i++){
+			Random random = new Random();
+			code += random.nextInt(9);
+		}
+		if (threadLocal.get() == null){
+			HttpSession session = request.getSession();
+			threadLocal.set(session);
+		}
+		threadLocal.get().setAttribute("mailcode", code);
+		try {
+			MailUtils.sendMail(mail, code);
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@RequestMapping("/home")
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	public String page2(){
@@ -119,6 +168,16 @@ public class UserController {
 	@RequestMapping("/signin")
 	public String page10(){
 		return "login-signin/signin";
+	}
+
+    @RequestMapping("/adminHome")
+    public String page11() {
+        return "home/adminHome";
+    }
+
+	@RequestMapping("/gotoreleaseNotice")
+	public String page12() {
+		return "notice/releaseNotice";
 	}
 
 }

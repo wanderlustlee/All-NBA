@@ -12,14 +12,14 @@ public class User {
 	private String answer;
 	private String image;
 	private Set<Diary> diary;
-	private List<Role> roles;
+	private String role;
 
-	public List<Role> getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public Set<Diary> getDiary() {

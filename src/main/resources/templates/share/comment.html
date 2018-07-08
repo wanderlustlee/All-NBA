@@ -3,41 +3,28 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="layout">
 <head>
-    <title>篮球名人堂</title>
-    <!-- for-mobile-apps -->
+    <title>查看故事</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-    function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- //for-mobile-apps -->
-    <link th:href="@{css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{css/bootstrap-theme.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{css/templatemo_style.css}" rel="stylesheet" type="text/css">
     <link th:href="@{css/style.css}" rel="stylesheet">
-    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{css/bootstrap-theme.min.css}" rel="stylesheet">
-    <link th:href="@{css/templatemo_style.css}" rel="stylesheet">
-    <link th:href="@{css/font-awesome.min.css}" rel="stylesheet">
     <script th:src="@{js/jquery-1.11.1.min.js}" type="text/javascript"></script>
-    <!-- //js -->
-    <script th:src="@{js/bootstrap.js}" type="text/javascript"></script>
-
-    <!-- search-scripts -->
-    <script src="../js/classie.js"></script>
-    <script src="../js/uisearch.js"></script>
-    <script>
-        function setting(){
-            document.getElementById('form1').action="/usersetting";
+    <script type="text/javascript">
+        function comment(diaryID) {
+            var string1 = diaryID;
+            document.getElementById('form1').action = "/comment?diaryID="+string1;
             document.getElementById('form1').submit();
         }
     </script>
-
-    <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Cherry+Cream+Soda' rel='stylesheet' type='text/css'>
 </head>
-
-<body>
+<body >
 <!-- header -->
 
 <div class="header_top">
@@ -116,71 +103,45 @@
 </div>
 
 <!-- //header -->
-
-
-
-<div class="row">
-    <div class="col-xs-6 col-md-4">
-    
-        <div class="thumbnail">
-            <img th:src="@{images/login-picture.jpg}"
-                 alt="通用的占位符缩略图">
-            <div class="caption">
-                <h3>迈克尔 乔丹</h3>
-                <p>迈克尔·乔丹（Michael Jordan），1963年2月17日生于纽约布鲁克林，前美国职业篮球运动员，司职得分后卫，历史上最伟大的篮球运动员。</p>
-                <p>
-                    <a href="https://baike.baidu.com/item/%E8%BF%88%E5%85%8B%E5%B0%94%C2%B7%E4%B9%94%E4%B8%B9/21768?fromtitle=%E4%B9%94%E4%B8%B9&fromid=30699" class="btn btn-primary" role="button">
-                        更多
-                    </a>
-                    <a href="#" class="btn btn-default" role="button">
-                        按钮
-                    </a>
-                </p>
+<div class="templatemo-bg-image-2">
+<div class="container">
+<form class="form-horizontal templatemo-contact-form-1" name="form1" id="form1" action="/comment" method="post">
+    <div class="form-group">
+        <h3 th:text="${session.diary2.title}" align="center" style="font-family:黑体;font-weight:bold;"></h3>
+        <h4 th:text="${session.diary2.content}" align="center" style="font-family:黑体;"></h4>
+        <h5 th:text="${session.diary2.username}" align="right" style="font-family:黑体;"></h5>
+        <div th:if="${not #lists.isEmpty(session.commentList)}">
+            <table >
+                <tr >
+                    <td width="115" height="37">评论内容</td>
+                    <td width="132">发表时间</td>
+                    <td width="180">发表用户</td>
+                </tr>
+                <tr  th:each="comment:${session.commentList}">
+                    <td th:text="${comment.content}"></td>
+                    <td th:text="${comment.commentTime}"></td>
+                    <td th:text="${comment.commentUsername}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <label class="control-label">评论 </label>
+            <div class="templatemo-input-icon-container">
+                <i class="fa fa-pencil-square-o"></i>
+                <textarea rows="8" cols="50" class="form-control" name="diarycontent" placeholder="注意内容文明规范"></textarea>
             </div>
         </div>
     </div>
-    <div class="col-xs-6 col-md-4">
-        <div class="thumbnail">
-            <img th:src="@{images/p2.jpg}"
-                 alt="通用的占位符缩略图">
-            <div class="caption">
-                <h3>德怀恩 韦德</h3>
-                <p>德怀恩·韦德（Dwyane Wade），1982年1月17日出生于美国芝加哥，美国职业篮球运动员，司职得分后卫，效力于芝加哥公牛队[1] ，绰号“闪电侠”（The Flash）。</p>
-                <p>
-                    <a href="https://baike.baidu.com/item/%E5%BE%B7%E6%80%80%E6%81%A9%C2%B7%E9%9F%A6%E5%BE%B7/5457042?fromtitle=%E9%9F%A6%E5%BE%B7&fromid=64575" class="btn btn-primary" role="button">
-                        更多
-                    </a>
-                    <a href="#" class="btn btn-default" role="button">
-                        按钮
-                    </a>
-                </p>
-            </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <input type="button" name="share" id="share" th:onclick="'javascript:comment(\''+${session.diary2.id}+'\')'" value="评论" class="btn btn-info pull-right">
         </div>
     </div>
-    
-    <div class="col-xs-6 col-md-4">
-        <div class="thumbnail">
-            <img th:src="@{images/p6.jpg}"
-                 alt="通用的占位符缩略图">
-            <div class="caption">
-                <h3>科比 布莱恩特</h3>
-                <p>科比·布莱恩特（Kobe Bryant），1978年8月23日出生于美国宾夕法尼亚州费城，前美国职业篮球运动员，司职得分后卫/小前锋（锋卫摇摆人）。</p>
-                <p>
-                    <a href="https://baike.baidu.com/item/%E7%A7%91%E6%AF%94%C2%B7%E5%B8%83%E8%8E%B1%E6%81%A9%E7%89%B9/318773?fr=aladdin&fromid=133066&fromtitle=%E7%A7%91%E6%AF%94" class="btn btn-primary" role="button">
-                        更多
-                    </a>
-                    <a href="#" class="btn btn-default" role="button">
-                        按钮
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
+</form>
 </div>
-
-		
 </div>
-
 <div class="footer">
     <div class="container">
         <h3>注册成为我们的朋友</h3>
@@ -228,7 +189,6 @@
             <p>Copyright &copy; 2018.wanderlustLee</p>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>

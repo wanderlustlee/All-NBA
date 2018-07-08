@@ -1,17 +1,12 @@
-package com.example.demo;
+package com.example.demo.filter;
 
-import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,10 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         session.setAttribute("user",user);
         session.setAttribute("sessusername",username);
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//        for (Role role:user.getRoles()) {
-//            authorities.add(new SimpleGrantedAuthority(role.getName()));
-//        }
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        authorities.add(new SimpleGrantedAuthority(user.getRole()));
         System.out.println(user.getUsername()+authorities.toString());
         return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPwd(),authorities);
     }

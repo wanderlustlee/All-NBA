@@ -20,6 +20,6 @@
         UPDATE SYS_User SET pwd = #{arg1},email = #{arg2},question = #{arg3},answer = #{arg4} WHERE username = #{arg0}
     </update>
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
-        insert into SYS_User (username,pwd,email,question,answer,image) values (#{username},#{pwd},#{email},#{question},#{answer},#{image})
+        insert into SYS_User (username,pwd,email,question,answer,image,role) values (#{username},#{pwd},#{email},#{question},#{answer},#{image},#{role})
     </insert>
 </mapper>

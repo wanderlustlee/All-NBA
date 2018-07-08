@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.UserDAO;
+import com.example.demo.entity.Comment;
 import com.example.demo.entity.Diary;
+import com.example.demo.entity.Notice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +39,18 @@ public class UserServiceImpl implements UserService{
 	}
 	public int setting(String username,String userpwd,String email,String question,String answer){
 		return userDAO.setting(username,userpwd,email,question,answer);
+	}
+	public List<Comment> seeComment(int commentDiaryID){
+		return userDAO.seeComment(commentDiaryID);
+	}
+	public int insertComment(Comment comment){
+		return userDAO.insertComment(comment);
+	}
+	public void releaseNotice(String notice) {
+		userDAO.releaseNotice(notice);
+	}
+
+	public List<Notice> seeNotice() {
+		return userDAO.seeNotice();
 	}
 }

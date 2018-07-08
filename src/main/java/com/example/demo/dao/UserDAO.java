@@ -1,6 +1,8 @@
 package com.example.demo.dao;
 
+import com.example.demo.entity.Comment;
 import com.example.demo.entity.Diary;
+import com.example.demo.entity.Notice;
 import com.example.demo.entity.User;
 import org.springframework.cache.annotation.EnableCaching;
 
@@ -14,4 +16,9 @@ public interface UserDAO {
 	public User selectUser(String username);
 	public List<Diary> seeShare(String time);
 	public int setting(String username,String userpwd,String email,String question,String answer);
+	public List<Comment> seeComment(int commentDiaryID);
+	public int insertComment(Comment comment);
+	void releaseNotice(String notice);
+
+	List<Notice> seeNotice();
 }
